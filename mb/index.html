@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+<title>Morning brief</title>
+<style>
+:root{color-scheme:light only;supported-color-schemes:light only;}
+*{box-sizing:border-box;}
+body{margin:0;padding:0;background:#EFEFED;font-family:Arial,Helvetica,sans-serif;color:#1F1F1F;}
+.wrap{max-width:680px;margin:24px auto;background:#fff;border-radius:14px;overflow:hidden;}
+.bar{height:6px;background:#FF2800;background-image:linear-gradient(#FF2800,#FF2800);}
+.px{padding-left:32px;padding-right:32px;}
+@media only screen and (max-width:520px){
+  .px{padding-left:14px;padding-right:14px;}
+  .hide-m{display:none !important;}
+  .h1{font-size:16px !important;}
+  .logo{width:96px !important;}
+  .tile{padding:9px !important;}
+  .tile .big{font-size:20px !important;}
+}
+.banner{background:#FFF8E1;color:#6B5A00;font-size:12.5px;line-height:1.45;padding:10px 32px;}
+.err{background:#FFF1EE;color:#8A1200;font-size:13px;line-height:1.45;padding:10px 32px;}
+.kicker{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:#6E6E6C;font-weight:bold;}
+.h1{font-size:20px;font-weight:bold;margin-top:2px;}
+.tiles{display:flex;gap:6px;margin:0;}
+.tile{flex:1;padding:14px;background:#F5F5F4;border-radius:10px;vertical-align:top;}
+.tile.pink{background:#FFF1EE;}
+.tile .big{font-size:28px;font-weight:bold;line-height:1;color:#1F1F1F;}
+.tile.pink .big{color:#FF2800;}
+.tile .sub{font-size:12.5px;margin-top:6px;line-height:1.4;}
+.toc{font-size:12.5px;color:#6E6E6C;padding-top:16px;}
+.sec-kicker{font-size:12px;letter-spacing:1.6px;text-transform:uppercase;color:#FF2800;font-weight:bold;padding-top:34px;}
+.sec-sub{font-size:13px;color:#6E6E6C;margin-top:4px;line-height:1.45;}
+.card{border:1px solid #E8E8E6;border-radius:12px;margin-top:16px;}
+.card-h{padding:16px 18px 12px;display:flex;justify-content:space-between;gap:12px;}
+.card-h h2{font-size:17px;font-weight:bold;margin:0;}
+.card-h .role{font-size:12.5px;color:#6E6E6C;margin-top:2px;}
+.card-h .stats{font-size:12px;color:#6E6E6C;line-height:1.5;text-align:right;white-space:nowrap;}
+.item{padding:14px 18px;border-top:1px solid #E8E8E6;}
+.item-top{display:flex;justify-content:space-between;gap:10px;}
+.who{font-size:14px;font-weight:bold;line-height:1.4;}
+.age{font-size:12px;white-space:nowrap;color:#6E6E6C;}
+.age.old{color:#FF2800;font-weight:bold;}
+.chips{margin-top:5px;}
+.chip{display:inline-block;padding:2px 8px;border-radius:9px;background:#F5F5F4;color:#6E6E6C;font-size:11px;font-weight:bold;margin-right:4px;}
+.chip.hold{background:#FFF8E1;color:#7A5D00;}
+.chip.saved{background:#E8F6EE;color:#1B6B3A;}
+.draft{margin-top:8px;padding:10px 12px;background:#F5F5F4;border-left:3px solid #FF2800;border-radius:6px;font-size:14px;color:#1F1F1F;line-height:1.5;white-space:pre-wrap;word-break:break-word;}
+.why{margin-top:7px;font-size:12.5px;color:#6E6E6C;line-height:1.5;}
+.why b{color:#1F1F1F;}
+.hist{margin-top:6px;font-size:12.5px;color:#6E6E6C;line-height:1.45;}
+.hist summary{cursor:pointer;color:#1F1F1F;font-weight:bold;list-style:none;padding:4px 0;}
+.hist summary::-webkit-details-marker{display:none;}
+.hist summary:after{content:" \25BE";color:#6E6E6C;}
+.hist[open] summary:after{content:" \25B4";}
+.hist ol{margin:4px 0 0;padding:0;list-style:none;}
+.hist li{padding:5px 0;border-top:1px dashed #E8E8E6;}
+.hist .hd{color:#1F1F1F;font-weight:bold;white-space:nowrap;}
+.actions{margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;}
+.btn{display:inline-block;padding:8px 14px;border:1px solid #CFCFCC;border-radius:8px;background:#fff;color:#1F1F1F;font-size:12.5px;font-weight:bold;cursor:pointer;font-family:inherit;}
+.btn:disabled{opacity:.55;cursor:default;}
+.btn.solid{background:#FF2800;background-image:linear-gradient(#FF2800,#FF2800);color:#ffffff;border-color:#FF2800;}
+.btn.big{display:block;width:100%;text-align:center;padding:16px 28px;font-size:18px;border-radius:10px;text-decoration:none;border:0;}
+.status{margin-top:8px;font-size:12.5px;color:#6E6E6C;min-height:1em;}
+.status.ok{color:#1B6B3A;font-weight:bold;}
+.status.bad{color:#8A1200;font-weight:bold;}
+.foot-link{display:inline-block;padding:10px 18px 16px;color:#FF2800;font-weight:bold;font-size:13px;text-decoration:none;}
+.notyet{padding:12px 14px;background:#F5F5F4;border-radius:8px;font-size:13px;color:#6E6E6C;line-height:1.5;margin-top:10px;}
+table.grid{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px;}
+table.grid th,table.grid td{padding:8px 0 8px 5px;border-top:1px solid #E8E8E6;text-align:right;}
+table.grid th:first-child,table.grid td:first-child{text-align:left;padding-left:0;}
+table.grid thead th{border-top:0;font-size:11px;color:#6E6E6C;font-weight:normal;}
+.under{color:#FF2800;}
+.muted{color:#C8C8C6;}
+.note{margin:8px 0 0;font-size:12.5px;color:#6E6E6C;line-height:1.5;}
+.did{width:100%;border-collapse:collapse;margin-top:10px;}
+.did td{padding:9px 10px 9px 0;border-top:1px solid #E8E8E6;font-size:13px;line-height:1.5;vertical-align:top;}
+.did td.lab{font-weight:bold;width:150px;}
+.health{list-style:none;margin:10px 0 0;padding:0;}
+.health li{display:flex;gap:8px;padding:5px 0;font-size:13.5px;line-height:1.5;}
+.dot{display:inline-block;width:10px;height:10px;border-radius:5px;margin-top:5px;flex:none;}
+.usage-tiles{display:flex;gap:6px;margin-top:12px;}
+.footer{border-top:1px solid #E8E8E6;margin:30px 32px 26px;padding-top:14px;font-size:12px;color:#9A9A98;line-height:1.5;}
+.footer a{color:#FF2800;text-decoration:none;font-weight:bold;}
+.overlay{position:fixed;inset:0;background:rgba(20,20,20,.45);display:none;align-items:center;justify-content:center;padding:16px;z-index:20;}
+.overlay.on{display:flex;}
+.modal{background:#fff;border-radius:12px;max-width:560px;width:100%;padding:20px;box-shadow:0 10px 40px rgba(0,0,0,.2);}
+.modal h3{margin:0 0 8px;font-size:16px;}
+.modal textarea{width:100%;min-height:180px;font:14px/1.5 Arial,Helvetica,sans-serif;padding:10px;border:1px solid #CFCFCC;border-radius:8px;resize:vertical;}
+.modal .row{margin-top:12px;display:flex;gap:8px;justify-content:flex-end;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar"></div>
+  <div id="banner" class="banner" hidden></div>
+  <div id="err" class="err" hidden></div>
+  <div id="app"></div>
+</div>
+<div id="overlay" class="overlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h3 id="edit-title">Edit draft</h3>
+    <p class="note" id="edit-who"></p>
+    <textarea id="edit-text"></textarea>
+    <div class="row">
+      <button type="button" class="btn" id="edit-cancel">Cancel</button>
+      <button type="button" class="btn solid" id="edit-save">Save draft</button>
+    </div>
+  </div>
+</div>
+<script>
+const API_URL = "https://script.google.com/macros/s/AKfycbz5ZdrO6qKHbD2mkddFU4mp1TqVSfDsu7gGD36sz8Tpf_UEanCROdSjd8W4dPOBVCIK/exec";
+let PAYLOAD = null;
+let LOGO = "";
+let BOOT_ERROR = "";
+let LINK = null;
+const LOCAL = false;
+const RED = '#FF2800';
+
+function esc(s){
+  return String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function clip(s,n){
+  s = String(s || '').replace(/\s+/g,' ').trim();
+  if(s.length <= n) return s;
+  return s.slice(0, n-1).replace(/\s+\S*$/,'') + '\u2026';
+}
+function age(when, brief){
+  if(!when) return '';
+  try{
+    const n = Math.round((new Date(brief+'T12:00:00') - new Date(String(when).slice(0,10)+'T12:00:00')) / 86400000);
+    if(n <= 0) return 'today';
+    if(n === 1) return '1 day';
+    return n + ' days';
+  }catch(e){ return ''; }
+}
+function fmt(n, d){
+  if(n == null || n === '') return '';
+  const x = Number(n);
+  return isNaN(x) ? '' : x.toFixed(d);
+}
+
+function linkToken(){
+  const link = LINK || {};
+  return String(link.token || [link.date, link.exp, link.sig].join('|'));
+}
+function withLink(item, extra){
+  const link = LINK || {};
+  return Object.assign({}, item, extra || {}, {date: link.date, exp: link.exp, sig: link.sig});
+}
+// Neutral-host mode: talk to the Apps Script web app with no cookies, so a browser
+// signed in to several Google accounts is never routed to /u/N or a Drive error page.
+function apiPost(fn, item, ok, err){
+  fetch(API_URL, {method:'POST', credentials:'omit', redirect:'follow', referrerPolicy:'no-referrer',
+    headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify({fn: fn, item: item, token: linkToken()})})
+    .then(r => r.json()).then(ok).catch(err);
+}
+function apiSetApproval(item, action, ok, err){
+  if(API_URL){ apiPost('set', withLink(item, {action:action}), ok, err); return; }
+  if(LOCAL || !(window.google && google.script && google.script.run)){
+    ok({ok:false, error:'Local preview \u2014 the approval sheet is not being changed.'});
+    return;
+  }
+  google.script.run.withSuccessHandler(ok).withFailureHandler(err).setApproval(withLink(item, {action:action}), linkToken());
+}
+function apiSaveDraft(item, text, ok, err){
+  if(API_URL){ apiPost('draft', withLink(item, {draft:text}), ok, err); return; }
+  if(LOCAL || !(window.google && google.script && google.script.run)){
+    ok({ok:false, error:'Local preview \u2014 the approval sheet is not being changed.'});
+    return;
+  }
+  google.script.run.withSuccessHandler(ok).withFailureHandler(err).saveDraft(withLink(item, {draft:text}), linkToken());
+}
+
+function numCell(v, goal, total){
+  if(v == null) return '<td class="muted">&middot;</td>';
+  const over = (goal != null && v < goal);
+  return '<td' + (over ? ' class="under"' : '') + '>' + esc(v) + '</td>';
+}
+
+function renderOutreach(v){
+  const labs = v.day_labels || [];
+  return (v.outreach || []).map(block => {
+    let body = '<div class="px" style="padding-top:18px;"><div style="font-size:15px;font-weight:bold;">' + esc(block.title) + '</div>';
+    if(block.not_connected){
+      body += '<div class="notyet"><b style="color:#1F1F1F;">Not connected yet.</b> ' + esc(block.not_connected) + '</div></div>';
+      return body;
+    }
+    let head = '<tr><th>&nbsp;</th>' + labs.map(l => '<th>'+esc(l)+'</th>').join('') + '<th>7 days</th><th class="hide-m">Goal</th></tr>';
+    let rows = (block.metrics || []).map(m => {
+      if(m.missing){
+        return '<tr><td>'+esc(m.label)+'</td>' + labs.map(()=>'<td class="muted">&middot;</td>').join('') +
+          '<td colspan="2" class="under" style="font-weight:bold;white-space:nowrap;">not tracked yet</td></tr>';
+      }
+      const tot = m.total;
+      const underTot = m.goal && tot < m.goal * 7;
+      return '<tr><td>'+esc(m.label)+'</td>' + (m.values||[]).map(val => numCell(val, m.goal)).join('') +
+        '<td style="font-weight:bold;'+(underTot?'color:'+RED:'')+'">'+esc(tot)+'</td>' +
+        '<td class="hide-m" style="color:#6E6E6C;">'+(m.goal ? (m.goal*7) : '\u2013')+'</td></tr>';
+    }).join('');
+    body += '<table class="grid"><thead>'+head+'</thead><tbody>'+rows+'</tbody></table>';
+    if(block.note) body += '<p class="note">'+esc(block.note)+'</p>';
+    return body + '</div>';
+  }).join('');
+}
+
+function renderUsage(v){
+  const tiles = [
+    {big: fmt(v.used_pct,1)+'%', sub: 'used this week so far<br><span style="color:#6E6E6C;">allowed by now: '+Math.round(v.allowed_by_now||0)+'%</span>'},
+    {big: Math.round(v.proj||0)+'%', sub: 'by Monday 9:07 PM at '+fmt(v.rate,1)+'% a day<br><span style="color:#6E6E6C;">daily allotment 14.3%</span>'},
+    {big: fmt(v.last_same,1)+'%', sub: 'last week at this point<br><span style="color:#6E6E6C;">finished the week at '+Math.round(v.last_week_total||0)+'%</span>'}
+  ].map(t => '<div class="tile"><div class="big">'+t.big+'</div><div class="sub">'+t.sub+'</div></div>').join('');
+  const rows = (v.usage_days || []).map(d => {
+    const day = (val, limit, bold) => {
+      if(val == null) return '<span class="muted">\u2013</span>';
+      const over = val > limit + 0.05;
+      return '<span style="color:'+(over?RED:'#1F1F1F')+';'+(bold||over?'font-weight:bold;':'')+'">'+fmt(val,1)+'%</span>';
+    };
+    const sofar = d.so_far ? '<div style="font-size:10.5px;color:#6E6E6C;">so far</div>' : '';
+    return '<tr>' +
+      '<td style="text-align:left;padding-left:0;"><b>'+esc(d.label)+'</b><div class="hide-m" style="font-size:11px;color:#6E6E6C;">'+esc(d.this_date)+' \u00b7 '+esc(d.last_date)+'</div></td>' +
+      '<td style="background:#FFF6F3;">'+day(d.that_day, v.allot)+sofar+'</td>' +
+      '<td style="background:#FFF6F3;">'+day(d.running, d.allowed, true)+'</td>' +
+      '<td>'+day(d.last_day, v.allot)+'</td>' +
+      '<td>'+day(d.last_running, d.allowed)+'</td>' +
+      '<td style="color:#6E6E6C;">'+Math.round(d.allowed)+'%</td></tr>';
+  }).join('');
+  let by = '<div class="notyet"><b style="color:#1F1F1F;">Not connected yet.</b> Grok\'s new per-bot usage chart goes here once Dash saves it every morning. Until then this shows the whole fleet only.</div>';
+  if(v.by_bot && v.by_bot.length){
+    by = '<table class="grid"><thead><tr><th>Bot</th><th>This week</th><th>On pace for</th><th>Last week</th><th class="hide-m">Runs</th><th class="hide-m">Steps</th><th>Per result</th></tr></thead><tbody>' +
+      v.by_bot.map(b => '<tr><td style="text-align:left;"><b>'+esc(b.name)+'</b><div style="font-size:11.5px;color:#6E6E6C;margin-top:3px;">'+esc(b.got||'')+'</div></td>' +
+        '<td><b>'+fmt(b.week,1)+'%</b></td><td>'+Math.round((b.week*7)/Math.max((PAYLOAD.data && PAYLOAD.usage && (PAYLOAD.usage.this||[]).length) || 1,1))+'%</td>' +
+        '<td style="color:#6E6E6C;">'+esc(b.last)+'%</td><td class="hide-m">'+esc(b.runs||'')+'</td><td class="hide-m">'+esc(b.steps||'')+'</td><td style="color:#6E6E6C;">'+esc(b.per||'')+'</td></tr>').join('') +
+      '</tbody></table>';
+  }
+  return '<div class="px usage-tiles">'+tiles+'</div>' +
+    '<div class="px" style="padding-top:18px;"><div style="font-size:15px;font-weight:bold;">Day by day, this week against last week</div>' +
+    '<div class="sec-sub">Each day runs 9:07 PM to 9:07 PM and gets 14.3% of the week. Red means over: a day over 14.3%, or a running total ahead of what\'s allowed by then.</div>' +
+    '<table class="grid"><thead><tr><th></th><th colspan="2" style="text-align:center;color:'+RED+';background:#FFF6F3;">This week</th><th colspan="2" style="text-align:center;">Last week</th><th></th></tr>' +
+    '<tr><th>Day</th><th style="background:#FFF6F3;">That day</th><th style="background:#FFF6F3;">Running</th><th>That day</th><th>Running</th><th>Allowed by then</th></tr></thead><tbody>'+rows+'</tbody></table></div>' +
+    '<div class="px" style="padding-top:22px;"><div style="font-size:15px;font-weight:bold;">By bot</div>'+by +
+    '<p class="note">Monday rule: whatever is left Monday morning beyond 5% goes to extra outreach, and everything stops at 95% before the 9:07 PM reset.</p></div>';
+}
+
+function groupItems(items){
+  const alias = {"Loose End Leroy":"Leroy","Cold Call Carl":"Carl","Check-In Charlie":"Charlie"};
+  const roles = {
+    Charlie: ["Check-In Charlie","Existing customers: check-ins and win-backs"],
+    Leroy: ["Loose End Leroy","Open loops and promised follow-ups"],
+    Carl: ["Cold Call Carl","Cold email and storm response"],
+    "Diesel Dan": ["Diesel Dan","Federation Fuels outreach"],
+    "Proposal Builder": ["Proposal Builder","Quote and proposal builder"]
+  };
+  const groups = {};
+  const order = [];
+  (items||[]).forEach(it => {
+    let key = it.kind === 'bots' ? (alias[it.bot] || it.bot) : (it.kind === 'li' ? 'Link 2.0' : 'Pipedrive Pauly');
+    if(!groups[key]){ groups[key] = []; order.push(key); }
+    groups[key].push(it);
+  });
+  order.sort((a,b) => groups[b].length - groups[a].length);
+  // Keep Link and Pipedrive after bot cards, matching the email.
+  const bots = order.filter(k => k !== 'Link 2.0' && k !== 'Pipedrive Pauly');
+  const rest = order.filter(k => k === 'Link 2.0' || k === 'Pipedrive Pauly');
+  return bots.concat(rest).map(key => {
+    let name, role, stats;
+    if(key === 'Link 2.0'){ name = 'Link 2.0'; role = 'LinkedIn connection requests and messages'; stats = groups[key].length + ' waiting'; }
+    else if(key === 'Pipedrive Pauly'){ name = 'Pipedrive Pauly'; role = 'Logs real calls, texts and emails to Pipedrive'; stats = groups[key].length + ' waiting'; }
+    else {
+      const r = roles[key] || [key, ''];
+      name = r[0]; role = r[1];
+      const dates = groups[key].map(it => it.date).filter(Boolean);
+      const oldest = dates.length ? dates.slice().sort()[0] : '';
+      stats = groups[key].length + ' waiting' + (oldest ? '<br>oldest ' + esc(age(oldest, PAYLOAD.brief)) : '');
+    }
+    return {key, name, role, stats, items: groups[key]};
+  });
+}
+
+// Plain history (newest last, collapsed) and one sentence on why this message now; built by history.py.
+function contextHtml(it){
+  const note = it.note && it.note !== 'None' && it.kind === 'bots' ? '<div class="why"><b>Your note:</b> '+esc(it.note)+'</div>' : '';
+  const h = it.history || [];
+  const rows = h.length
+    ? h.map(x => '<li><span class="hd">'+esc(x.date)+' \u00b7 '+esc(x.channel)+'</span> '+esc(x.text)+'</li>').join('')
+    : '<li>No earlier messages found.'+(it.history_fallback && it.history_fallback !== it.why_plain ? ' Bot notes: '+esc(it.history_fallback) : '')+'</li>';
+  const label = h.length ? 'History ('+h.length+(h.length === 1 ? ' touch' : ' touches')+', last '+esc(h[h.length-1].date)+')' : 'History (none found)';
+  return note + '<div class="why"><b>Why this message now:</b> '+esc(it.why_plain||'')+'</div>' +
+    '<details class="hist"><summary>'+label+'</summary><ol>'+rows+'</ol></details>';
+}
+
+function itemHtml(it, kindExtra){
+  const a = age(it.date, PAYLOAD.brief);
+  const old = /days$/.test(a) && parseInt(a,10) >= 3;
+  const hold = (it.approve === 'Hold');
+  let chips = '<span class="chip">'+esc(it.type || kindExtra || '')+'</span>';
+  if(hold) chips += '<span class="chip hold" data-chip="hold">On hold</span>';
+  if(it.approve === 'Y') chips += '<span class="chip saved" data-chip="saved">Approved</span>';
+  if(it.approve === 'N') chips += '<span class="chip" data-chip="saved">Removed</span>';
+  const why = it.note && it.note !== 'None' && it.kind === 'bots'
+    ? ('Your note: ' + it.note + '. ' + (it.why||''))
+    : (it.why||'');
+  const canWrite = !!(it.tab && it.key);
+  return '<div class="item" data-id="'+esc(it.id)+'">' +
+    '<div class="item-top"><div class="who">'+esc(it.who)+'</div><div class="age'+(old?' old':'')+'">'+esc(a)+'</div></div>' +
+    '<div class="chips">'+chips+'</div>' +
+    '<div class="draft" data-draft="1">'+esc(it.draft)+'</div>' +
+    (it.why_plain !== undefined ? contextHtml(it) : '<div class="why"><b>Why now:</b> '+esc(clip(why,420))+'</div>') +
+    (canWrite
+      ? '<div class="actions">' +
+          '<button type="button" class="btn solid" data-act="approve">Approve</button>' +
+          '<button type="button" class="btn" data-act="edit">Edit</button>' +
+          '<button type="button" class="btn" data-act="hold">Hold</button>' +
+          '<button type="button" class="btn" data-act="remove">Remove</button>' +
+        '</div><div class="status" data-status="1"></div>'
+      : '<div class="status bad">This item could not be matched to a sheet row, so the buttons are off.</div>') +
+    '</div>';
+}
+
+function render(){
+  const v = PAYLOAD.view || {};
+  const brief = PAYLOAD.brief || '';
+  document.title = 'Morning brief' + (v.date_txt ? ', ' + v.date_txt : '');
+  if(LOCAL){
+    const b = document.getElementById('banner');
+    b.hidden = false;
+    b.innerHTML = '<b>Local preview.</b> Buttons do not change the approval sheet. This is today\u2019s brief rendered from the published payload.';
+  }
+  if(BOOT_ERROR){
+    const e = document.getElementById('err');
+    e.hidden = false;
+    e.textContent = BOOT_ERROR;
+  }
+  const logo = (LOGO || PAYLOAD.logo_data_url)
+    ? '<img class="logo" src="'+esc(LOGO || PAYLOAD.logo_data_url)+'" width="132" alt="BPM Services" style="display:block;width:132px;height:auto;border:0;">'
+    : '<div style="font-size:22px;font-weight:bold;color:'+RED+';">BPM</div>';
+  const tiles = '<div class="tiles">' +
+    '<div class="tile pink"><div class="big">'+(v.n_yes||0)+'</div><div class="sub">need your yes</div></div>' +
+    '<div class="tile"><div class="big">'+(v.invites_7d||0)+'</div><div class="sub">LinkedIn requests, last 7 days (goal 112)</div></div>' +
+    '<div class="tile"><div class="big">'+Math.round(v.proj||0)+'%</div><div class="sub">of the week at this pace (last week '+Math.round(v.last_week_total||0)+'%)</div></div>' +
+    '<div class="tile"><div class="big">'+(v.stale||0)+'</div><div class="sub">gone stale (over 7 days)</div></div>' +
+    '</div>';
+
+  const cards = groupItems(PAYLOAD.items||[]).map(g => {
+    return '<div class="card"><div class="card-h"><div><h2>'+esc(g.name)+'</h2><div class="role">'+esc(g.role)+'</div></div><div class="stats">'+g.stats+'</div></div>' +
+      g.items.map(it => itemHtml(it)).join('') + '</div>';
+  }).join('');
+
+  const qCards = (PAYLOAD.questions||[]).map(q => {
+    const fake = {id:'question|'+q.bot+'|'+q.text, kind:'question', who:q.title||'Question', type:'Question', draft:q.text, why:q.why||'', date:q.date||brief, tab:'', key:null};
+    return '<div class="card"><div class="card-h"><div><h2>'+esc(q.bot||'Question')+'</h2><div class="role">'+esc(q.role||'')+'</div></div><div class="stats">1 question</div></div>' +
+      itemHtml(fake).replace('<div class="status bad">This item could not be matched to a sheet row, so the buttons are off.</div>', '') +
+      '<a class="foot-link" href="'+esc(v.dash_url||'#')+'">Answer in the chat \u2192</a></div>';
+  }).join('');
+
+  const did = (v.did && v.did.length)
+    ? '<table class="did">' + v.did.map(pair => '<tr><td class="lab">'+esc(pair[0])+'</td><td>'+esc(pair[1])+'</td></tr>').join('') + '</table>'
+    : '<div class="notyet"><b style="color:#1F1F1F;">Not connected yet.</b> Each bot will write a few lines on what it did overnight; Dash is setting that up.</div>';
+
+  const colors = {red:RED, green:'#2E9E5B', amber:'#E0A100'};
+  const health = '<ul class="health">' + (v.health||[]).map(h =>
+    '<li><span class="dot" style="background:'+(colors[h.color]||'#6E6E6C')+';"></span><div><b>'+esc(h.headline)+'</b> '+esc(h.detail)+'</div></li>'
+  ).join('') + '</ul>';
+
+  document.getElementById('app').innerHTML =
+    '<div class="px" style="padding-top:24px;padding-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;">' +
+      '<div>'+logo+'</div>' +
+      '<div style="text-align:right;"><div class="kicker">Morning brief</div><div class="h1">'+esc(v.date_txt||brief)+'</div></div>' +
+    '</div>' +
+    '<div class="px">'+tiles+'</div>' +
+    '<div class="px toc">In this brief: Needs your eyes \u00b7 Outreach, last 7 days \u00b7 What each bot did \u00b7 Fleet health \u00b7 Usage</div>' +
+    '<div class="px"><div class="sec-kicker">Needs your eyes</div>' +
+    '<div class="sec-sub">Every item waiting on you, newest first, with the full draft and why the bot wrote it. Anything over 7 days moves to Stale. Approve, Hold and Remove update that row on the approval sheet. Edit opens the draft so you can save a change first.</div>' +
+    cards + qCards + '</div>' +
+    '<div class="px"><div class="sec-kicker">Outreach, last 7 days</div>' +
+    '<div class="sec-sub">'+esc(v.range_txt||'')+'. Red means under goal.</div></div>' +
+    renderOutreach(v) +
+    '<div class="px"><div class="sec-kicker">What each bot did yesterday</div>'+did+'</div>' +
+    '<div class="px"><div class="sec-kicker">Fleet health</div>'+health+'</div>' +
+    '<div class="px"><div class="sec-kicker">Usage</div><div class="sec-sub">Percent of the weekly allowance. The week runs Monday 9:07 PM to Monday 9:07 PM; each day gets 14.3%.</div></div>' +
+    renderUsage(v) +
+    '<div class="footer">Compiled from the live approval sheet, Grok\'s usage record and the bots\' reports. Urgent items still reach you right away.<br>BPM Services \u00b7 <a href="https://www.bpmhelps.com">bpmhelps.com</a></div>';
+
+  wire();
+}
+
+let editing = null;
+function setStatus(el, ok, msg){
+  el.className = 'status ' + (ok ? 'ok' : 'bad');
+  el.textContent = msg;
+}
+function findItem(id){
+  return (PAYLOAD.items||[]).find(it => it.id === id);
+}
+function wire(){
+  document.getElementById('app').addEventListener('click', ev => {
+    const btn = ev.target.closest('[data-act]');
+    if(!btn) return;
+    const box = btn.closest('.item');
+    if(!box) return;
+    const id = box.getAttribute('data-id');
+    const item = findItem(id);
+    if(!item) return;
+    const status = box.querySelector('[data-status]');
+    const act = btn.getAttribute('data-act');
+    if(act === 'edit'){
+      editing = {item, box};
+      document.getElementById('edit-who').textContent = item.who;
+      document.getElementById('edit-text').value = box.querySelector('[data-draft]').textContent;
+      document.getElementById('overlay').classList.add('on');
+      document.getElementById('edit-text').focus();
+      return;
+    }
+    if(act === 'remove' && !confirm('Remove this item? That writes N in Approve on the sheet.')) return;
+    btn.disabled = true;
+    setStatus(status, true, 'Saving\u2026');
+    apiSetApproval(item, act, res => {
+      btn.disabled = false;
+      if(!res || !res.ok){
+        setStatus(status, false, (res && res.error) || 'Could not update the row.');
+        return;
+      }
+      const label = {Y:'Approved', Hold:'On hold', N:'Removed'}[res.written && res.written.approve] || 'Saved';
+      item.approve = res.written.approve;
+      const chips = box.querySelector('.chips');
+      chips.querySelectorAll('[data-chip]').forEach(c => c.remove());
+      if(res.written.approve === 'Hold') chips.insertAdjacentHTML('beforeend','<span class="chip hold" data-chip="hold">On hold</span>');
+      if(res.written.approve === 'Y') chips.insertAdjacentHTML('beforeend','<span class="chip saved" data-chip="saved">Approved</span>');
+      if(res.written.approve === 'N') chips.insertAdjacentHTML('beforeend','<span class="chip" data-chip="saved">Removed</span>');
+      setStatus(status, true, label + ' \u2014 saved on ' + res.tab + ' row ' + res.row + '.');
+    }, err => {
+      btn.disabled = false;
+      setStatus(status, false, String(err && err.message ? err.message : err));
+    });
+  });
+  document.getElementById('edit-cancel').onclick = () => {
+    document.getElementById('overlay').classList.remove('on');
+    editing = null;
+  };
+  document.getElementById('overlay').addEventListener('click', ev => {
+    if(ev.target.id === 'overlay'){ document.getElementById('overlay').classList.remove('on'); editing = null; }
+  });
+  document.getElementById('edit-save').onclick = () => {
+    if(!editing) return;
+    const text = document.getElementById('edit-text').value;
+    const {item, box} = editing;
+    const status = box.querySelector('[data-status]');
+    setStatus(status, true, 'Saving\u2026');
+    apiSaveDraft(item, text, res => {
+      if(!res || !res.ok){
+        setStatus(status, false, (res && res.error) || 'Could not save the draft.');
+        return;
+      }
+      box.querySelector('[data-draft]').textContent = text;
+      item.draft = text;
+      document.getElementById('overlay').classList.remove('on');
+      setStatus(status, true, 'Draft saved on ' + res.tab + ' row ' + res.row + '.');
+      editing = null;
+    }, err => setStatus(status, false, String(err && err.message ? err.message : err)));
+  };
+}
+
+function bootFromApi(){
+  const q = new URLSearchParams(location.search || location.hash.replace(/^#/, ''));
+  const date = q.get('date') || '', exp = q.get('exp') || '', sig = q.get('sig') || '';
+  LINK = {date: date, exp: exp, sig: sig, token: date + '|' + exp + '|' + sig};
+  const app = document.getElementById('app');
+  app.innerHTML = '<p class="px" style="padding-top:24px;padding-bottom:24px;color:#6E6E6C;">Loading your brief…</p>';
+  const fail = msg => {
+    app.innerHTML = '';
+    const e = document.getElementById('err');
+    e.hidden = false;
+    e.textContent = msg;
+  };
+  if(!date || !exp || !sig){ fail('This brief link has expired or is invalid'); return; }
+  const url = API_URL + '?api=data&date=' + encodeURIComponent(date) + '&exp=' + encodeURIComponent(exp) + '&sig=' + encodeURIComponent(sig);
+  fetch(url, {credentials:'omit', redirect:'follow', referrerPolicy:'no-referrer'})
+    .then(r => r.json())
+    .then(res => {
+      if(!res || !res.ok || !res.payload){ fail((res && res.error) || 'This brief link has expired or is invalid'); return; }
+      PAYLOAD = res.payload;
+      LOGO = PAYLOAD.logo_data_url || '';
+      BOOT_ERROR = res.error || '';
+      if(PAYLOAD.view && PAYLOAD.view.date_txt) document.title = 'Morning brief, ' + PAYLOAD.view.date_txt;
+      render();
+    })
+    .catch(() => frameFallback(date, exp, sig));
+}
+// Until the web app has the JSON API (or if it is unreachable by fetch), show the web app's own
+// page in a full-window frame. Safari and Spark send no Google cookies to a framed third-party
+// page, so Google treats the visit as anonymous and never rewrites it to /u/N (the Drive error page).
+function frameFallback(date, exp, sig){
+  const src = API_URL + '?date=' + encodeURIComponent(date) + '&exp=' + encodeURIComponent(exp) + '&sig=' + encodeURIComponent(sig);
+  document.body.innerHTML = '';
+  document.body.style.margin = '0';
+  document.body.style.background = '#EFEFED';
+  const f = document.createElement('iframe');
+  f.src = src;
+  f.title = 'Morning brief';
+  f.setAttribute('referrerpolicy', 'no-referrer');
+  f.setAttribute('allow', 'clipboard-write');
+  f.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;border:0;display:block;';
+  document.body.appendChild(f);
+}
+
+if(API_URL){ bootFromApi(); } else { render(); }
+</script>
+</body>
+</html>
